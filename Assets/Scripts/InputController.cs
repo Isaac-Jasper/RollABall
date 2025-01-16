@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.Events;
 public class InputController : MonoBehaviour
 {
     public UnityEvent<Vector3> OnMove = new UnityEvent<Vector3>();
+    public UnityEvent OnJump = new UnityEvent();
     [SerializeField]
     private float moveTolerance = 0.1f;
 
@@ -14,6 +16,10 @@ public class InputController : MonoBehaviour
 
         if (moveDir.magnitude > moveTolerance) {
             OnMove?.Invoke(moveDir);
+        }
+
+        if (Input.GetButtonDown("Jump")) {
+            OnJump?.Invoke();
         }
     }
 }

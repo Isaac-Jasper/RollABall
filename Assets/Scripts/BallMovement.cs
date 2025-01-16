@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BallAI : MonoBehaviour
+public class BallMovement : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody rb;
     [SerializeField]
-    private float moveSpeed;
+    private GroundChecker gc;
+    [SerializeField]
+    private float moveSpeed, jumpForce;
+
     public void MoveBall(Vector3 moveDirection) {
-        Debug.Log("ballismoving");
         rb.AddForce(moveDirection*Time.deltaTime*moveSpeed);
+    }
+    public void JumpBall() {
+        if (gc.isGrounded) {
+            rb.AddForce(Vector3.up*jumpForce);
+        }
     }
 }
