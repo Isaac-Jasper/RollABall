@@ -4,37 +4,82 @@ using UnityEngine;
 public class PlatformMorpher : MonoBehaviour
 {
     [SerializeField]
-    GameObject floor1, floor2, wall1, wall2, wall3, wall4;
+    private LayoutCollection layoutCollection;
     [SerializeField]
-    Vector3[] dims = new Vector3[1];
+    int initLayout;
     [SerializeField]
-    float speed;
+    float speed, tolerance;
     
 
     public void Start() {
-        StartCoroutine(RemoveWall(wall1, speed, dims[4]));
-        StartCoroutine(RemoveWall(wall2, speed, dims[4]));
-        StartCoroutine(RemoveWall(wall3, speed, dims[4]));
-        StartCoroutine(RemoveWall(wall4, speed, dims[4]));
+        MorphToLayout(initLayout);
     }
-    private IEnumerator TransformObject(GameObject floor, float speed, Vector3 dimensions) {
-        Vector3 initialDimensions = floor.transform.localScale;
+
+    private void MorphToLayout(int layout) {
+        ObjectLayout l = layoutCollection.layouts[layout];
+
+        for (int i = 0; i < layoutCollection.objects.Count; i++) {
+            GameObject obj = layoutCollection.objects[i];
+            if (obj == null)  continue;
+            
+            switch (obj.tag) {
+                case "InstantMorph":
+                    obj.transform.localScale = l.Scales[i];
+                    obj.transform.position = l.Positions[i];
+                break;
+                case "InstantMove" :
+                    StartCoroutine(TransformObjectInstantMove(obj, speed, l.Scales[i], l.Positions[i]));
+                break;
+                default:
+                    StartCoroutine(TransformObject(obj, speed, l.Scales[i], l.Positions[i]));
+                break;
+            }
+        }
+    }
+    private IEnumerator TransformObject(GameObject obj, float speed, Vector3 scaleDim, Vector3 pos) {
+        Vector3 initDim = obj.transform.localScale;
+        Vector3 initPos = obj.transform.position;
         float time = 0;
-        while (floor.transform.localScale.magnitude >= dimensions.magnitude) {
-            time = time + speed*Time.deltaTime;
-            floor.transform.localScale = Vector3.Lerp(initialDimensions, dimensions, time);
+        if (initDim != Vector3.zero) {
+            obj.SetActive(true);
+        }
+        
+        while (Vector3.SqrMagnitude(obj.transform.localScale - scaleDim) > tolerance || Vector3.SqrMagnitude(obj.transform.position - pos) > tolerance) {
+            time += speed*Time.deltaTime;
+            obj.transform.localScale = Vector3.Lerp(initDim, scaleDim, time);
+            obj.transform.position = Vector3.Lerp(initPos, pos, time);
             yield return null;
         }
-        floor.transform.localScale = dimensions;
+
+        if (scaleDim == Vector3.zero)
+            obj.SetActive(false);
+        else {
+            obj.transform.localScale = scaleDim;
+            obj.transform.position = pos;
+        }
     }
-    private IEnumerator RemoveWall(GameObject wall, float speed, Vector3 dimensions) {
-        Vector3 initialDimensions = wall.transform.localScale;
+
+    private IEnumerator TransformObjectInstantMove(GameObject obj, float speed, Vector3 scaleDim, Vector3 pos) {
+        Vector3 initDim = obj.transform.localScale;
         float time = 0;
-        while (wall.transform.localScale.magnitude > dimensions.magnitude) {
-            time = time + speed*Time.deltaTime;
-            wall.transform.localScale = Vector3.Lerp(initialDimensions, dimensions, time);
+        while (Vector3.SqrMagnitude(obj.transform.localScale) > tolerance) {
+            time += 2*speed*Time.deltaTime;
+            obj.transform.localScale = Vector3.Lerp(initDim, Vector3.zero, time);
             yield return null;
         }
-        wall.SetActive(false);
+        obj.SetActive(false);
+
+        obj.transform.position = pos;
+        if (scaleDim == Vector3.zero) yield break;
+
+        obj.SetActive(true);
+        time = 0;
+        while (Vector3.SqrMagnitude(obj.transform.localScale - scaleDim) > tolerance) {
+            time += 2*speed*Time.deltaTime;
+            obj.transform.localScale = Vector3.Lerp(Vector3.zero, scaleDim, time);
+            yield return null;
+        }
+
+        obj.transform.localScale = scaleDim;
     }
 }
