@@ -8,7 +8,8 @@ using UnityEditor.SceneManagement;
 public class LayoutEditorScript : Editor {
     const float addObjectButtonWidth = 150, addObjectButtonHeight = 25,
     addLayoutButtonWidth = 150, addLayoutButtonHeight = 25,
-    loadLayoutButtonWidth = 150, loadLayoutButtonHeight = 25,
+    loadLayoutButtonWidth = 100, loadLayoutButtonHeight = 25,
+    UpdateLayoutButtonWidth = 100, UpdateLayoutButtonHeight = 25,
     lockObjectButtonWidth=50, lockObjectButtonHeight = 25,
     deleteObjectButtonWidth=50, deleteObjectButtonHeight=25,
     lockLayoutButtonWidth = 50, lockLayoutButtonHeight = 25,
@@ -78,14 +79,16 @@ public class LayoutEditorScript : Editor {
             } else {
                 m.objects[i] = (GameObject) ObjectField(m.objects[i].name, m.objects[i], typeof(GameObject), true);
             }
-            doLock = GUILayout.Button("Lock", GUILayout.Width(lockObjectButtonWidth), GUILayout.Height(lockObjectButtonHeight));
-            if (doLock) m.lockObject[i] = !m.lockObject[i];
 
             if (!m.lockObject[i]) {
                 delete = GUILayout.Button("Delete", GUILayout.Width(deleteObjectButtonWidth), GUILayout.Height(deleteObjectButtonHeight));
             }
 
+            doLock = GUILayout.Button("Lock", GUILayout.Width(lockObjectButtonWidth), GUILayout.Height(lockObjectButtonHeight));
+
             EndHorizontal();
+
+            if (doLock) m.lockObject[i] = !m.lockObject[i];
             
             if (delete) {
                 m.objects.RemoveAt(i);
@@ -104,17 +107,29 @@ public class LayoutEditorScript : Editor {
             BeginHorizontal();
 
             bool doLock;
-            bool delete = false;
-            m.showLayout[i] = Foldout(m.showLayout[i], "Layout " + i);
-            bool loadLayout = GUILayout.Button("Load Layout", GUILayout.Width(loadLayoutButtonWidth), GUILayout.Height(loadLayoutButtonHeight));
-            doLock = GUILayout.Button("Lock", GUILayout.Width(lockLayoutButtonWidth), GUILayout.Height(lockLayoutButtonHeight));
-            if (doLock) m.lockLayout[i] = !m.lockLayout[i];
+            bool loadLayout;
+            bool delete = false;    
+            bool DoUpdateLayout = false;
 
+            m.showLayout[i] = Foldout(m.showLayout[i], "Layout " + i);
+
+            loadLayout = GUILayout.Button("Load Layout", GUILayout.Width(loadLayoutButtonWidth), GUILayout.Height(loadLayoutButtonHeight));
+            
             if (!m.lockLayout[i]) {
+                DoUpdateLayout = GUILayout.Button("Update Layout", GUILayout.Width(UpdateLayoutButtonWidth), GUILayout.Height(UpdateLayoutButtonHeight));
                 delete = GUILayout.Button("Delete", GUILayout.Width(deleteLayoutButtonWidth), GUILayout.Height(deleteLayoutButtonHeight));
             }
 
+            doLock = GUILayout.Button("Lock", GUILayout.Width(lockLayoutButtonWidth), GUILayout.Height(lockLayoutButtonHeight));
+            
             EndHorizontal();
+
+
+            if (doLock) m.lockLayout[i] = !m.lockLayout[i];
+
+            if (DoUpdateLayout) {
+                UpdateLayout(m.layouts[i], m);
+            }
 
             if (loadLayout) {
                 LoadLayout(m.layouts[i], m);
@@ -134,7 +149,6 @@ public class LayoutEditorScript : Editor {
     }
 
     private void DisplayLayout(ObjectLayout layout, LayoutCollection m) {
-
         for (int i = 0; i < m.objects.Count; i++) {
             if (m.objects[i] == null) {
                 LabelField("O" + i);
@@ -143,6 +157,18 @@ public class LayoutEditorScript : Editor {
             }
             layout.Scales[i] = Vector3Field("Scale", layout.Scales[i]);
             layout.Positions[i] = Vector3Field("Position", layout.Positions[i]);
+        }
+    }
+
+    private void UpdateLayout(ObjectLayout layout, LayoutCollection m) {
+        for (int i = 0; i < m.objects.Count; i++) {
+            if (m.objects[i] == null) {
+                layout.Positions[i] = Vector3.zero;
+                layout.Scales[i] = Vector3.zero;
+            } else {
+                layout.Positions[i] = m.objects[i].transform.position;
+                layout.Scales[i] = m.objects[i].transform.localScale;
+            }
         }
     }
 
