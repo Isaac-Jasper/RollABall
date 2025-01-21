@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 106492381}
   - component: {fileID: 106492380}
   - component: {fileID: 106492379}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: InstantMove
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 516658546}
   - component: {fileID: 516658545}
   - component: {fileID: 516658544}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: InstantMove
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 629477744}
   - component: {fileID: 629477743}
   - component: {fileID: 629477742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (2)
   m_TagString: InstantMove
   m_Icon: {fileID: 0}
@@ -849,9 +849,27 @@ MonoBehaviour:
     - {x: 7.38, y: 4.17, z: 4.5}
     - {x: 0, y: 3, z: 0}
     - {x: 0, y: 0, z: 0}
+  - Scales:
+    - {x: 10, y: 1, z: 10}
+    - {x: 1, y: 1, z: 1}
+    - {x: 10, y: 1, z: 1}
+    - {x: 1, y: 1, z: 10}
+    - {x: 1, y: 1, z: 10}
+    - {x: 10, y: 1, z: 1}
+    - {x: 7, y: 3, z: 7}
+    - {x: 0, y: 0, z: 0}
+    Positions:
+    - {x: -10.32, y: 0, z: 7.22}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 1, z: -4.5}
+    - {x: -4.5, y: 1, z: 0}
+    - {x: 4.5, y: 1, z: 0}
+    - {x: 0, y: 1, z: 4.5}
+    - {x: 0, y: 3, z: 0}
+    - {x: 0, y: 0, z: 0}
   lockObject: 0101010101010101
-  lockLayout: 01010101
-  showLayout: 00000000
+  lockLayout: 0101010101
+  showLayout: 0000000001
 --- !u!1 &662020532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1129,7 @@ GameObject:
   - component: {fileID: 819031003}
   - component: {fileID: 819031002}
   - component: {fileID: 819031001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor 2
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1252,7 +1270,7 @@ GameObject:
   - component: {fileID: 918984884}
   - component: {fileID: 918984886}
   - component: {fileID: 918984885}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Area2
   m_TagString: InstantMorph
   m_Icon: {fileID: 0}
@@ -1430,7 +1448,7 @@ GameObject:
   - component: {fileID: 1106666828}
   - component: {fileID: 1106666830}
   - component: {fileID: 1106666829}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Area1
   m_TagString: InstantMorph
   m_Icon: {fileID: 0}
@@ -1765,7 +1783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layoutCollection: {fileID: 629522563}
-  initLayout: 3
+  initLayout: 0
   speed: 0.5
   tolerance: 0
 --- !u!4 &1214992016
@@ -1931,7 +1949,7 @@ GameObject:
   - component: {fileID: 1452562043}
   - component: {fileID: 1452562042}
   - component: {fileID: 1452562041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (3)
   m_TagString: InstantMove
   m_Icon: {fileID: 0}
@@ -2161,7 +2179,7 @@ GameObject:
   - component: {fileID: 1788370737}
   - component: {fileID: 1788370736}
   - component: {fileID: 1788370735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor 1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2404,6 +2422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  radius: 0
+  distance: 0.5
 --- !u!1 &2064910818
 GameObject:
   m_ObjectHideFlags: 0

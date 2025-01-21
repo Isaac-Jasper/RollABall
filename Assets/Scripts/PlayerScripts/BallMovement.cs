@@ -17,7 +17,7 @@ public class BallMovement : MonoBehaviour
         rb.AddForce(moveDirection*Time.deltaTime*moveSpeed);
     }
     public void JumpBall() {
-        if (gc.isGrounded) {
+        if (gc.IsGrounded()) {
             rb.AddForce(Vector3.up*jumpForce);
         }
     }
