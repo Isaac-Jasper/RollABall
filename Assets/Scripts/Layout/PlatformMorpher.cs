@@ -22,12 +22,12 @@ public class PlatformMorpher : MonoBehaviour
     }
 
     private IEnumerator MoveCollectable() {
-        float[] threshhold = new float[collectableAreas.Length];
+        float[] threshhold = new float[collectableAreas.Length-1]; //the 0 index of collectable areas is parent
         float TotalVolume = 0;
-        for (int i = 0; i < collectableAreas.Length; i++) {
+        for (int i = 1; i < collectableAreas.Length; i++) {
             Vector3 s = collectableAreas[i].localScale;
             TotalVolume += s.x*s.y*s.z;
-            threshhold[i] = TotalVolume;
+            threshhold[i-1] = TotalVolume;
         }
         float rand = Random.Range(0f, TotalVolume);
         int randomArea = 0;
@@ -39,8 +39,8 @@ public class PlatformMorpher : MonoBehaviour
         }
 
 
-        Vector3 pos = collectableAreas[randomArea].position;
-        Vector3 scale = collectableAreas[randomArea].localScale;
+        Vector3 pos = collectableAreas[randomArea+1].position; //the 0 index of collectable areas is parent
+        Vector3 scale = collectableAreas[randomArea+1].localScale;
 
         float randomX = Random.Range(pos.x - scale.x/2, pos.x + scale.x/2);
         float randomY = Random.Range(pos.y - scale.y/2, pos.y + scale.y/2);
@@ -66,6 +66,7 @@ public class PlatformMorpher : MonoBehaviour
     }
 
     public void MorphToLayout(int layout) {
+        StopAllCoroutines();
         ObjectLayout l = layoutCollection.layouts[layout];
 
         for (int i = 0; i < layoutCollection.objects.Count; i++) {

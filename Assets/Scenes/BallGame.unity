@@ -977,42 +977,60 @@ MonoBehaviour:
   - Scales:
     - {x: 10, y: 1, z: 10}
     - {x: 10, y: 1, z: 10}
-    - {x: 10, y: 1, z: 1}
-    - {x: 1, y: 1, z: 10}
-    - {x: 1, y: 1, z: 10}
-    - {x: 10, y: 1, z: 1}
-    - {x: 7, y: 3, z: 7}
     - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 1, y: 1, z: 10}
+    - {x: 10, y: 1, z: 1}
+    - {x: 4, y: 2, z: 5}
+    - {x: 1, y: 4, z: 1}
     Positions:
     - {x: 0, y: 0, z: 0}
     - {x: 0, y: 0, z: 0}
-    - {x: 1.16, y: 3.83, z: -4.5}
-    - {x: -4.5, y: 3.02, z: 11.42}
-    - {x: 4.5, y: 6.33, z: 6.81}
-    - {x: 7.38, y: 4.17, z: 4.5}
-    - {x: 0, y: 3, z: 0}
-    - {x: 0, y: 0, z: 0}
+    - {x: 2.21, y: 1.09, z: -12.58}
+    - {x: -3.4500003, y: 0.2800001, z: 3.3400002}
+    - {x: 5.5, y: 3.5, z: -1}
+    - {x: 8.5, y: 1.5, z: -3.5}
+    - {x: 4, y: 6, z: 0}
+    - {x: 8.48, y: 4.42, z: -3.5}
   - Scales:
+    - {x: 10, y: 8, z: 10}
     - {x: 10, y: 1, z: 10}
-    - {x: 1, y: 1, z: 1}
-    - {x: 10, y: 1, z: 1}
-    - {x: 1, y: 1, z: 10}
-    - {x: 1, y: 1, z: 10}
-    - {x: 10, y: 1, z: 1}
+    - {x: 1, y: 8, z: 1}
+    - {x: 1, y: 8, z: 1}
+    - {x: 1, y: 8, z: 1}
+    - {x: 1, y: 8, z: 1}
     - {x: 7, y: 3, z: 7}
     - {x: 0, y: 0, z: 0}
     Positions:
-    - {x: -10.32, y: 0, z: 7.22}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 4.5, y: 8, z: -4.5}
+    - {x: -4.5, y: 8, z: 4.5}
+    - {x: 4.5, y: 8, z: 4.5}
+    - {x: -4.5, y: 8, z: -4.5}
+    - {x: 0, y: 5.76, z: 0}
+    - {x: 0, y: 2.7600002, z: 0}
+  - Scales:
+    - {x: 2, y: 1, z: 2}
+    - {x: 2, y: 1, z: 2}
+    - {x: 10, y: 1, z: 1}
+    - {x: 1, y: 1, z: 10}
+    - {x: 1, y: 1, z: 10}
+    - {x: 10, y: 1, z: 1}
+    - {x: 2.5, y: 1, z: 2.5}
+    - {x: 0, y: 0, z: 0}
+    Positions:
+    - {x: 0, y: 0, z: 0}
     - {x: 0, y: 0, z: 0}
     - {x: 0, y: 1, z: -4.5}
     - {x: -4.5, y: 1, z: 0}
     - {x: 4.5, y: 1, z: 0}
     - {x: 0, y: 1, z: 4.5}
-    - {x: 0, y: 3, z: 0}
+    - {x: 0, y: 3.5, z: 0}
     - {x: 0, y: 0, z: 0}
   lockObject: 0101010101010101
-  lockLayout: 0101010101
-  showLayout: 0000000001
+  lockLayout: 010101010101
+  showLayout: 000000000000
 --- !u!1 &662020532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &918984884
 Transform:
   m_ObjectHideFlags: 0
@@ -1442,7 +1460,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918984883}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1597,7 +1615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1106666828
 Transform:
   m_ObjectHideFlags: 0
@@ -1620,7 +1638,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106666827}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2749,7 +2767,7 @@ Rigidbody:
   m_GameObject: {fileID: 2141905200}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -2781,7 +2799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2141905205}
   gc: {fileID: 2064099685}
-  moveSpeed: 100
+  moveSpeed: 200
   jumpForce: 400
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
