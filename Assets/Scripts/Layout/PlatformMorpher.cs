@@ -92,7 +92,7 @@ public class PlatformMorpher : MonoBehaviour
         Vector3 initDim = obj.transform.localScale;
         Vector3 initPos = obj.transform.position;
         float time = 0;
-        if (initDim != Vector3.zero) {
+        if (scaleDim != Vector3.zero) {
             obj.SetActive(true);
         }
         
